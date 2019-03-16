@@ -217,7 +217,7 @@ spec:
       mode: DISABLE
 {{< /text >}}
 
-## Migrating the `RbacConfig` to `ClusterRbacConfig`
+## Migrating from `RbacConfig` to `ClusterRbacConfig`
 
 The `RbacConfig` is deprecated due to a [bug](https://github.com/istio/istio/issues/8825). You must
 migrate to `ClusterRbacConfig` if you are currently using `RbacConfig`. The bug reduces the scope of
@@ -230,7 +230,7 @@ The script is included in the [Istio installation package](/docs/setup/kubernete
 Download and run the script with the following command:
 
 {{< text bash >}}
-$ curl -L {{% github_file %}}/tools/convert_RbacConfig_to_ClusterRbacConfig.sh | sh -
+$ curl -L {{< github_file >}}/tools/convert_RbacConfig_to_ClusterRbacConfig.sh | sh -
 {{< /text >}}
 
 The script automates the following operations:

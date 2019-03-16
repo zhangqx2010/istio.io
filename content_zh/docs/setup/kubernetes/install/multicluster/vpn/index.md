@@ -3,8 +3,6 @@ title: VPN 连接
 description: 通过直连远程 pods 实现多 Kubernetes 集群安装 Istio 网格。
 weight: 5
 keywords: [kubernetes,multicluster,federation,vpn]
-aliases:
-    - /zh/docs/setup/kubernetes/install/multicluster
 ---
 
 这是一个关于当每个集群中的 pod 可以直连访问其他集群中的 pod 时，可以跨多个集群安装 Istio 网格的说明。
@@ -45,12 +43,12 @@ aliases:
 
 {{< tabset cookie-name="install-istio-remote" >}}
 
-{{% tab name="Helm+kubectl" cookie-value="Helm+kubectl" %}}
+{{< tab name="Helm+kubectl" cookie-value="Helm+kubectl" >}}
 [使用 Helm 和 `kubectl` 安装并管理远程集群](#helm-k)
-{{% /tab %}}
-{{% tab name="Helm+Tiller" cookie-value="Helm+Tiller" %}}
+{{< /tab >}}
+{{< tab name="Helm+Tiller" cookie-value="Helm+Tiller" >}}
 [使用 Helm 和 Tiller 安装并管理远程集群](#tiller)
-{{% /tab %}}
+{{< /tab >}}
 {{< /tabset >}}
 
 ### 设置环境变量 {#environment}
@@ -84,7 +82,7 @@ $ export ZIPKIN_POD_IP=$(kubectl -n istio-system get pod -l app=jaeger -o jsonpa
 
 {{< tabset cookie-name="install-istio-remote" >}}
 
-{{% tab name="Helm+kubectl" cookie-value="Helm+kubectl" %}}
+{{< tab name="Helm+kubectl" cookie-value="Helm+kubectl" >}}
 
 #### 通过 Helm 和 `kubectl` {#helm-k}
 
@@ -123,9 +121,9 @@ $ helm template install/kubernetes/helm/istio-remote --namespace istio-system \
 
    对需要设置 sidecar 注入的所有 Kubernetes 命名空间需要重复此操作。
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="Helm+Tiller" cookie-value="Helm+Tiller" %}}
+{{< tab name="Helm+Tiller" cookie-value="Helm+Tiller" >}}
 
 #### 通过 Helm 和 Tiller {#tiller}
 
@@ -147,7 +145,7 @@ $ helm template install/kubernetes/helm/istio-remote --namespace istio-system \
     $ helm install install/kubernetes/helm/istio-remote --name istio-remote  --namespace istio-system --set global.remotePilotAddress=${PILOT_POD_IP} --set global.remotePolicyAddress=${POLICY_POD_IP} --set global.remoteTelemetryAddress=${TELEMETRY_POD_IP} --set global.remoteZipkinAddress=${ZIPKIN_POD_IP}
     {{< /text >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabset >}}
 
@@ -273,7 +271,7 @@ Kubernetes secret 数据秘钥必须符合 `DNS-1123 subdomain` [格式](https:/
 
 {{< tabset cookie-name="uninstall-istio-remote" >}}
 
-{{% tab name="kubectl" cookie-value="kubectl" %}}
+{{< tab name="kubectl" cookie-value="kubectl" >}}
 
 ### 通过 `kubectl`
 
@@ -284,9 +282,9 @@ Kubernetes secret 数据秘钥必须符合 `DNS-1123 subdomain` [格式](https:/
 $ kubectl delete -f $HOME/istio-remote.yaml
 {{< /text >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab name="Tiller" cookie-value="Tiller" %}}
+{{< tab name="Tiller" cookie-value="Tiller" >}}
 
 ### 通过 Tiller
 
@@ -297,7 +295,7 @@ $ kubectl delete -f $HOME/istio-remote.yaml
 $ helm delete --purge istio-remote
 {{< /text >}}
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabset >}}
 
