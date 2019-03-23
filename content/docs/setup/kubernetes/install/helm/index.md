@@ -75,12 +75,7 @@ deployed and you don't want to install it.
     $ helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl apply -f -
     {{< /text >}}
 
-1. Verify that all `58` Istio CRDs were committed to the Kubernetes api-server using the following command:
-
-    {{< text bash >}}
-    $ kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
-    58
-    {{< /text >}}
+1. {{< boilerplate verify-crds >}}
 
 1. Select a [configuration profile](/docs/setup/kubernetes/additional-setup/config-profiles/)
     and then render and apply Istio's core components corresponding to your chosen profile.
@@ -128,15 +123,6 @@ $ helm template install/kubernetes/helm/istio --name istio --namespace istio-sys
 
 {{< /tab >}}
 
-{{< tab name="remote" cookie-value="remote" >}}
-
-{{< text bash >}}
-$ helm template install/kubernetes/helm/istio --name istio --namespace istio-system \
-    --values install/kubernetes/helm/istio/values-istio-remote.yaml | kubectl apply -f -
-{{< /text >}}
-
-{{< /tab >}}
-
 {{< tab name="sds" cookie-value="sds" >}}
 
 {{< text bash >}}
@@ -175,12 +161,7 @@ to manage the lifecycle of Istio.
     $ helm install install/kubernetes/helm/istio-init --name istio-init --namespace istio-system
     {{< /text >}}
 
-1. Verify that all `58` Istio CRDs were committed to the Kubernetes api-server using the following command:
-
-    {{< text bash >}}
-    $ kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
-    58
-    {{< /text >}}
+1. {{< boilerplate verify-crds >}}
 
 1. Select a [configuration profile](/docs/setup/kubernetes/additional-setup/config-profiles/)
     and then install the `istio` chart corresponding to your chosen profile.
@@ -224,15 +205,6 @@ $ helm install install/kubernetes/helm/istio --name istio --namespace istio-syst
 {{< text bash >}}
 $ helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
     --values install/kubernetes/helm/istio/values-istio-minimal.yaml
-{{< /text >}}
-
-{{< /tab >}}
-
-{{< tab name="remote" cookie-value="remote" >}}
-
-{{< text bash >}}
-$ helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
-    --values install/kubernetes/helm/istio/values-istio-remote.yaml
 {{< /text >}}
 
 {{< /tab >}}
@@ -309,16 +281,6 @@ $ kubectl delete namespace istio-system
 
 {{< /tab >}}
 
-{{< tab name="remote" cookie-value="remote" >}}
-
-{{< text bash >}}
-$ helm template install/kubernetes/helm/istio --name istio --namespace istio-system \
-    --values install/kubernetes/helm/istio/values-istio-remote.yaml | kubectl delete -f -
-$ kubectl delete namespace istio-system
-{{< /text >}}
-
-{{< /tab >}}
-
 {{< tab name="sds" cookie-value="sds" >}}
 
 {{< text bash >}}
@@ -353,6 +315,6 @@ The `istio-init` chart contains all raw CRDs in the `istio-init/files` directory
 You can simply delete the CRDs using `kubectl`.
 To permanently delete Istio's CRDs and the entire Istio configuration, run:
 
-    {{< text bash >}}
-    $ kubectl delete -f install/kubernetes/helm/istio-init/files
-    {{< /text >}}
+{{< text bash >}}
+$ kubectl delete -f install/kubernetes/helm/istio-init/files
+{{< /text >}}
